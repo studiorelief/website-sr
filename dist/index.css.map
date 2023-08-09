@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.css"],
+  "sourcesContent": ["/* Hide scrollbar for IE, Edge, and Firefox */\nbody {\n    /* background-color: blue; */\n    -ms-overflow-style: none;  /* IE and Edge */\n    scrollbar-width: none;  /* Firefox */\n}\n\n/* Hide scrollbar for IE, Edge, and Firefox */\n::-webkit-scrollbar {\n    display: none;\n}\n\n"],
+  "mappings": ";AACA;AAEI;AACA;AAAA;AAIJ;AACI;AAAA;",
+  "names": []
+}
