@@ -1,54 +1,55 @@
 import 'swiper/css';
 
+import $ from 'jquery';
 import Swiper from 'swiper';
+import { Keyboard, Mousewheel, Navigation } from 'swiper/modules';
 
 function reviewSwiper() {
-  $('.home-review_swiper-wrapper').each(function (index) {
-    let loopMode = false;
-    if ($(this).attr('loop-mode') === 'true') {
-      loopMode = true;
-    }
-    let sliderDuration = 300;
-    if ($(this).attr('slider-duration') !== undefined) {
-      sliderDuration = +$(this).attr('slider-duration');
-    }
-    const swiper = new Swiper($(this).find('.swiper')[0], {
-      speed: sliderDuration,
-      loop: loopMode,
-      autoHeight: false,
-      centeredSlides: loopMode,
-      followFinger: true,
-      freeMode: false,
-      slideToClickedSlide: true,
-      slidesPerView: 1,
+  // swiper show - programmation
+  $('.home-review_swiper-wrapper').each(function () {
+    new Swiper($(this).find('.swiper')[0], {
+      modules: [Navigation, Mousewheel, Keyboard],
+      direction: 'horizontal',
+      slidesPerView: 'auto',
       spaceBetween: '4%',
-      rewind: false,
+      centeredSlides: true,
+      loop: true,
+      grabCursor: true,
+      slideToClickedSlide: true,
+      autoHeight: true,
+      speed: 750,
       mousewheel: {
         forceToAxis: true,
+        sensitivity: 1,
+        thresholdDelta: 1,
       },
       keyboard: {
         enabled: true,
         onlyInViewport: true,
       },
+      navigation: {
+        // Navigation arrows
+        nextEl: '.swiper-button-prev',
+        prevEl: '.swiper-button-next',
+      },
+      slideActiveClass: 'is-active',
       breakpoints: {
         // mobile landscape
         480: {
-          slidesPerView: 1,
+          slidesPerView: 'auto',
           spaceBetween: '4%',
         },
         // tablet
         768: {
-          slidesPerView: 2,
+          slidesPerView: 'auto',
           spaceBetween: '4%',
         },
         // desktop
         992: {
-          slidesPerView: 2.75,
-          spaceBetween: '2%',
+          slidesPerView: 2.5,
+          spaceBetween: '4%',
         },
       },
-      slideActiveClass: 'is-active',
-      slideDuplicateActiveClass: 'is-active',
     });
   });
 }
