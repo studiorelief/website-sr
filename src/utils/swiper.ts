@@ -13,6 +13,7 @@ function reviewSwiper() {
       slidesPerView: 'auto',
       spaceBetween: '4%',
       centeredSlides: true,
+      //* bug on loop à régler
       loop: true,
       grabCursor: true,
       slideToClickedSlide: true,
