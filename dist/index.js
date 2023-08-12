@@ -6381,6 +6381,31 @@
   // src/index.ts
   init_live_reload();
 
+  // src/utils/bgGlobal.ts
+  init_live_reload();
+  function repeatImageY(imageClass) {
+    const container = document.querySelector(".section_background");
+    const img = document.querySelector(imageClass);
+    if (!container || !img)
+      return;
+    const imgHeight = img.clientHeight;
+    const copiesNeeded = Math.ceil(container.clientHeight / imgHeight) - 1;
+    const existingClones = document.querySelectorAll(`${imageClass}.cloned`);
+    existingClones.forEach((clone) => {
+      clone.remove();
+    });
+    for (let i = 0; i < copiesNeeded; i++) {
+      const clonedImg = img.cloneNode(true);
+      clonedImg.style.top = `${imgHeight * (i + 1)}px`;
+      clonedImg.classList.add("cloned");
+      container.appendChild(clonedImg);
+    }
+  }
+  function initBgRepeat() {
+    repeatImageY(".background_image-primary-5");
+    repeatImageY(".background_image-neutral-5");
+  }
+
   // src/utils/greet.ts
   init_live_reload();
 
@@ -11101,6 +11126,7 @@
         slidesPerView: "auto",
         spaceBetween: "4%",
         centeredSlides: true,
+        //* bug on loop à régler
         loop: true,
         grabCursor: true,
         slideToClickedSlide: true,
@@ -11117,8 +11143,8 @@
         },
         navigation: {
           // Navigation arrows
-          nextEl: ".swiper-button-prev",
-          prevEl: ".swiper-button-next"
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
         },
         slideActiveClass: "is-active",
         breakpoints: {
@@ -11147,12 +11173,13 @@
   window.Webflow.push(() => {
     const name = "SR Dev";
     greetUser(name);
+    Promise.all([
+      loadScript("https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsstatic@1/cmsstatic.js"),
+      loadScript("https://cdn.jsdelivr.net/npm/@finsweet/attributes-accordion@1/accordion.js")
+    ]);
+    reviewSwiper();
+    initBgRepeat();
   });
-  Promise.all([
-    loadScript("https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsstatic@1/cmsstatic.js"),
-    loadScript("https://cdn.jsdelivr.net/npm/@finsweet/attributes-accordion@1/accordion.js")
-  ]);
-  reviewSwiper();
 })();
 /*! Bundled license information:
 

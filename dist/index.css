@@ -1,16 +1,4 @@
 /* src/index.css */
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overscroll-behavior: none;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-.page-wrapper {
-  overflow: clip;
-}
-
 /* node_modules/.pnpm/swiper@10.1.0/node_modules/swiper/swiper.css */
 @font-face {
   font-family: "swiper-icons";

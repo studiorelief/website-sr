@@ -30,8 +30,8 @@ function reviewSwiper() {
       },
       navigation: {
         // Navigation arrows
-        nextEl: '.swiper-button-prev',
-        prevEl: '.swiper-button-next',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
       slideActiveClass: 'is-active',
       breakpoints: {
