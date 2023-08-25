@@ -1,16 +1,14 @@
-// src/index.ts
 import './index.css';
 
 import { initBgRepeat } from '$utils/bgGlobal';
-import { greetUser } from '$utils/greet';
+import { animateHero, animateProcess } from '$utils/home/gsap';
+import { makeDraggable, triggerInte } from '$utils/home/hero';
+import { reviewSwiper } from '$utils/home/swiper';
 import { loadScript } from '$utils/loadScript';
-import { reviewSwiper } from '$utils/swiper';
+import { scrollNav } from '$utils/navbar';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  const name = 'SR Dev';
-  greetUser(name);
-
   // Load Finsweet Attributes scripts
   Promise.all([
     loadScript('https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsstatic@1/cmsstatic.js'),
@@ -22,4 +20,15 @@ window.Webflow.push(() => {
 
   // Load initBgRepeat (→ on Home)
   initBgRepeat();
+
+  // Load scrollNav (→ on Home)
+  scrollNav();
+
+  // Load gsap scroll home (→ on Home)
+  animateProcess();
+  animateHero();
+
+  // Load Draggable (→ on Home)
+  triggerInte();
+  makeDraggable();
 });
