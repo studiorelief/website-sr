@@ -2,11 +2,11 @@ import 'jqueryui';
 
 function makeDraggable() {
   $('.home-hero_icon-hand').draggable();
+  $('.home-hero_icon-hand-static').draggable();
   $('.home-hero_pin-w').draggable();
 }
 
 function triggerInte() {
-  let wireframeVisible = false;
   let uiVisibleRatio = 0;
 
   const heroComponents = document.querySelectorAll('.home-hero_component, .home-hero_icon-hand');
@@ -16,17 +16,15 @@ function triggerInte() {
       entries.forEach((entry) => {
         const targetId = (entry.target as HTMLElement).id;
 
-        if (targetId === 'wireframe') {
-          wireframeVisible = entry.intersectionRatio > 0;
-        } else if (targetId === 'ui') {
+        if (targetId === 'ui') {
           uiVisibleRatio = entry.intersectionRatio;
         }
 
         // Vérifier les conditions
         heroComponents.forEach((heroComponent: Element) => {
-          if (wireframeVisible || uiVisibleRatio > 0.5) {
+          if (uiVisibleRatio > 0.1) {
             heroComponent.classList.remove('no-pointer');
-          } else if (!wireframeVisible && uiVisibleRatio <= 0.5) {
+          } else if (uiVisibleRatio <= 0.1) {
             heroComponent.classList.add('no-pointer');
           }
         });
@@ -37,8 +35,7 @@ function triggerInte() {
     }
   );
 
-  // Observe multiple elements
-  observer.observe(document.querySelector('#wireframe') as HTMLElement);
+  // Observe the UI element
   observer.observe(document.querySelector('#ui') as HTMLElement);
 }
 

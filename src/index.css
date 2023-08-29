@@ -3,7 +3,7 @@
     cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64e70f616e6ad43bbfe73d96_guest.svg') 0 0, auto;
 }
 
-.home-hero_icon-hand, .home-hero_pin-w {
+.home-hero_icon-hand, .home-hero_icon-hand-static, .home-hero_pin-w {
     cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64e71ae1c45e306eec6eebb3_grab.svg') 0 0, auto;
 }
 
@@ -16,7 +16,7 @@
 }
 
 /* custom noise css */ 
-.background_image-noise::before {
+.background_noise::before {
     content: "";
     z-index: 100;
     position: absolute;

@@ -64,9 +64,6 @@ function animateHero() {
   });
 }
 
-// Appeler la fonction pour initialiser l'animation
-animateHero();
-
 // Home Process animation
 function animateProcess() {
   $('.section_home-process').each(function () {
