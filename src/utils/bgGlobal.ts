@@ -1,55 +1,58 @@
-// Importation de jQuery si nécessaire
-import $ from 'jquery';
+// V2 - TypeScript avec optimisations
+function repeatImageY(imageClass: string) {
+  const container = document.querySelector('.section_background') as HTMLElement | null;
+  const img = document.querySelector(imageClass) as HTMLImageElement | null;
 
-export function initializeBackgroundRepeat() {
-  function repeatImageY(imageClass: string) {
-    const $container = $('.section_background');
-    const $img = $(imageClass);
+  if (!container || !img) return;
 
-    if ($container.length === 0 || $img.length === 0) return;
+  const imgHeight = img.clientHeight;
+  const copiesNeeded = Math.ceil(container.clientHeight / imgHeight) - 1;
 
-    const imgHeight = $img.height();
-    const containerHeight = $container.height();
+  const existingClones = document.querySelectorAll(`${imageClass}.cloned`);
+  const existingCloneCount = existingClones.length;
 
-    if (typeof imgHeight !== 'number' || typeof containerHeight !== 'number') return;
+  // Utilisation d'un Document Fragment pour minimiser les reflows et repaints
+  const fragment = document.createDocumentFragment();
 
-    const copiesNeeded = Math.ceil(containerHeight / imgHeight) - 1;
-
-    // Supprime les images clonées existantes pour cette classe
-    $(`${imageClass}.cloned`).remove();
-
-    // Clone et ajoute l'image le nombre de fois nécessaire
-    for (let i = 0; i < copiesNeeded; i++) {
-      const $clonedImg = $img.clone();
-      $clonedImg.css('top', `${imgHeight * (i + 1)}px`);
-      $clonedImg.addClass('cloned');
-      $container.append($clonedImg);
+  // Réutilisation des clones existants et ajout/suppression de clones si nécessaire
+  if (existingCloneCount > copiesNeeded) {
+    existingClones.forEach((clone, index) => {
+      if (index >= copiesNeeded) {
+        clone.remove();
+      }
+    });
+  } else {
+    for (let i = existingCloneCount; i < copiesNeeded; i++) {
+      const clonedImg = img.cloneNode(true) as HTMLImageElement;
+      clonedImg.style.top = `${imgHeight * (i + 1)}px`;
+      clonedImg.classList.add('cloned');
+      fragment.appendChild(clonedImg);
     }
+    container.appendChild(fragment);
   }
-
-  function initBgRepeat() {
-    repeatImageY('.background_image-primary-5');
-    repeatImageY('.background_image-noise');
-  }
-
-  // Fonction simple de debounce
-  function debounce(func: (...args: unknown[]) => void, wait: number) {
-    let timeout: number | undefined;
-
-    return function (this: ThisParameterType<typeof func>, ...args: unknown[]): void {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  // Initialisation de la répétition de fond et écouteur d'événements pour le redimensionnement de la fenêtre
-  function init() {
-    initBgRepeat();
-    $(window).on('resize', debounce(initBgRepeat, 250));
-  }
-
-  // Init
-  $(document).ready(() => {
-    init();
-  });
 }
+
+function initBgRepeat() {
+  repeatImageY('.background_image-primary-5');
+  repeatImageY('.background_image-noise');
+}
+
+type DebounceFunction = (...args: unknown[]) => void;
+
+function debounce(func: DebounceFunction, wait: number): DebounceFunction {
+  let timeout: number | undefined;
+
+  return function (this: ThisParameterType<DebounceFunction>, ...args: unknown[]): void {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+function initBg() {
+  initBgRepeat();
+
+  // Augmentation du délai de debounce pour réduire le nombre d'appels
+  window.addEventListener('resize', debounce(initBgRepeat, 500));
+}
+
+export { initBg };

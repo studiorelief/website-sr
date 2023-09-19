@@ -1,10 +1,10 @@
 /* custom cursor */ 
 .home-hero_component, .home-hero_pin-w {
-    cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64e70f616e6ad43bbfe73d96_guest.svg') 0 0, auto;
+    cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64edf11d96e4624b6ee3d14e_pin-guest-2.svg') 0 0, auto;
 }
 
-.home-hero_icon-hand, .home-hero_icon-hand-static, .home-hero_pin-w {
-    cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64e71ae1c45e306eec6eebb3_grab.svg') 0 0, auto;
+.home-hero_icon-hand, .home-hero_pin-w {
+    cursor: url('https://uploads-ssl.webflow.com/62fb98c88ca07dff85e875d8/64edf247fc4becc272086c19_pin-guest-hover-2.svg') 0 0, auto;
 }
 
 .home-hero_component.no-pointer {
