@@ -64,6 +64,37 @@ function animateHero() {
   });
 }
 
+// Home Logos animation
+function animateLogo() {
+  $('.section_home-logos').each(function () {
+    const targetElement = $('.home-logos_image-wrapper');
+
+    // Set initial opacity
+    gsap.set(targetElement, {
+      opacity: 0.25,
+      y: 32,
+    });
+
+    // Step highlights animation
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        markers: false,
+        trigger: '.section_home-logos',
+        start: 'top 50%',
+        end: 'bottom 50%',
+        scrub: true,
+      },
+    });
+    // Rotate animation with a duration of 0.5
+    tl.to(targetElement, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.25,
+    });
+  });
+}
+
 // Home Process animation
 function animateProcess() {
   $('.section_home-process').each(function () {
@@ -135,4 +166,4 @@ function animateProcess() {
   });
 }
 
-export { animateHero, animateProcess };
+export { animateHero, animateLogo, animateProcess };

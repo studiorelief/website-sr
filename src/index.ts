@@ -2,7 +2,7 @@ import './index.css';
 
 /* import { initBg } from '$utils/bgGlobal'; */
 import { fnContact } from '$utils/contact';
-import { animateHero, animateProcess } from '$utils/home/gsap';
+import { animateHero, animateLogo, animateProcess } from '$utils/home/gsap';
 import { makeDraggable, triggerInte } from '$utils/home/hero';
 import { reviewSwiper } from '$utils/home/swiper';
 import { loadScript } from '$utils/loadScript';
@@ -31,6 +31,7 @@ window.Webflow.push(() => {
   scrollNav();
 
   // Load gsap scroll home (→ on Home)
+  animateLogo();
   animateProcess();
   animateHero();
 
