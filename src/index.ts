@@ -1,7 +1,6 @@
 import './index.css';
 
 /* import { initBg } from '$utils/bgGlobal'; */
-import { initBg } from '$utils/bgGlobal';
 import { fnContact } from '$utils/contact';
 import { animateHero, animateProcess } from '$utils/home/gsap';
 import { makeDraggable, triggerInte } from '$utils/home/hero';
@@ -27,7 +26,6 @@ window.Webflow.push(() => {
 
   // Load initBgRepeat (→ on Home)
   /* initBg(); */
-  initBg();
 
   // Load scrollNav (→ on Home)
   scrollNav();
