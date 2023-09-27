@@ -3,8 +3,9 @@ function scrollNav() {
 
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const sectionNavbar = document.querySelector('.section_navbar') as HTMLElement; // Ajouté "as HTMLElement"
+    const sectionNavbar = document.querySelector('.section_navbar') as HTMLElement;
     const navbarButton = document.querySelector('.navbar_button-w') as HTMLElement;
+    const navbarButtonMobile = document.querySelector('.navbar_button') as HTMLElement;
     const navbarBrand = document.querySelector('.navbar_brand-w') as HTMLElement;
     const navbarBrandImg = document.querySelector('.navbar_brand-img') as HTMLElement;
     const navbarBrandImgScroll = document.querySelector('.navbar_brand-img-scroll') as HTMLElement;
@@ -19,17 +20,21 @@ function scrollNav() {
     if (scrollTop > lastScrollTop) {
       sectionNavbar.style.transform = 'translateY(-5.125rem)';
       navbarButton.style.transform = 'translateY(5.125rem)';
+      navbarButtonMobile.style.transform = 'translateY(5.125rem)';
       navbarBrand.style.transform = 'translateY(5rem)';
       navbarBrandImg.style.display = 'none';
       navbarBrandImgScroll.style.display = 'block';
+      navbarButtonMobile.classList.add('is-scroll'); // Add "is-scroll" class to navbarButton
     }
     // Si l'utilisateur défile vers le haut et scrollTop > 2rem
     else if (scrollTop + twoRemInPixels < lastScrollTop) {
       sectionNavbar.style.transform = 'translateY(0)';
       navbarButton.style.transform = 'translateY(0)';
+      navbarButtonMobile.style.transform = 'translateY(0)';
       navbarBrand.style.transform = 'translateY(0)';
       navbarBrandImg.style.display = 'block';
       navbarBrandImgScroll.style.display = 'none';
+      navbarButtonMobile.classList.remove('is-scroll'); // Remove "is-scroll" class from navbarButton
     }
 
     lastScrollTop = scrollTop;
