@@ -34,7 +34,7 @@ function scrollHome() {
           scrollNav();
         }
       }
-    }
+    } else scrollNav();
   });
 }
 
