@@ -16,10 +16,15 @@ function scrollNav() {
     // Conversion de 2rem en pixels (en supposant que la taille de base est de 16px)
     const twoRemInPixels = 1 * 16;
 
+    // Vérifiez si la largeur de la fenêtre est supérieure à 768 pixels
+    const isPC = window.innerWidth > 768;
+
     // Si l'utilisateur défile vers le bas
     if (scrollTop > lastScrollTop) {
+      if (isPC) {
+        navbarButton.style.transform = 'translateY(5.125rem)';
+      }
       sectionNavbar.style.transform = 'translateY(-5.125rem)';
-      navbarButton.style.transform = 'translateY(5.125rem)';
       navbarButtonMobile.style.transform = 'translateY(5.125rem)';
       navbarBrand.style.transform = 'translateY(5rem)';
       navbarBrandImg.style.display = 'none';
@@ -28,8 +33,10 @@ function scrollNav() {
     }
     // Si l'utilisateur défile vers le haut et scrollTop > 2rem
     else if (scrollTop + twoRemInPixels < lastScrollTop) {
+      if (isPC) {
+        navbarButton.style.transform = 'translateY(0)';
+      }
       sectionNavbar.style.transform = 'translateY(0)';
-      navbarButton.style.transform = 'translateY(0)';
       navbarButtonMobile.style.transform = 'translateY(0)';
       navbarBrand.style.transform = 'translateY(0)';
       navbarBrandImg.style.display = 'block';
