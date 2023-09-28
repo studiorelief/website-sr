@@ -41,4 +41,17 @@ window.Webflow.push(() => {
   // Load Draggable (→ on Home)
   triggerInte();
   makeDraggable();
+
+  // Load home on Integration
+  $(document).ready(function () {
+    // Vérifiez si l'utilisateur est sur la page d'accueil
+    if (window.location.pathname === '/' && window.location.hash !== '#integration') {
+      window.location.hash = 'integration';
+      const integrationElement = $('#integration');
+      const offset = integrationElement.offset();
+      if (offset) {
+        window.scrollTo(0, offset.top);
+      }
+    }
+  });
 });
