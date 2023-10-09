@@ -4,7 +4,7 @@ import './index.css';
 import { fnContact } from '$utils/contact';
 import { animateHero, animateLogo, animateProcess } from '$utils/home/gsap';
 import { makeDraggable, triggerInte } from '$utils/home/hero';
-import { scrollHome } from '$utils/home/scrollHome';
+/* import { scrollHome } from '$utils/home/scrollHome'; */
 import { reviewSwiper } from '$utils/home/swiper';
 import { loadScript } from '$utils/loadScript';
 
@@ -42,6 +42,6 @@ window.Webflow.push(() => {
   triggerInte();
   makeDraggable();
 
-  // Scroll on Home to Inte
-  scrollHome();
+  /* // Scroll on Home to Inte
+  scrollHome(); */
 });
