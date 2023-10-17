@@ -7,6 +7,7 @@ import { makeDraggable, triggerInte } from '$utils/home/hero';
 /* import { scrollHome } from '$utils/home/scrollHome'; */
 import { reviewSwiper } from '$utils/home/swiper';
 import { loadScript } from '$utils/loadScript';
+import { scrollNav } from '$utils/navbar';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
@@ -31,7 +32,7 @@ window.Webflow.push(() => {
   /* initBg(); */
 
   // Load scrollNav (→ on Home)
-  /* scrollNav(); */
+  scrollNav();
 
   // Load gsap scroll home (→ on Home)
   animateLogo();
